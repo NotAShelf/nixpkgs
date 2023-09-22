@@ -18,11 +18,11 @@
 
 buildGoModule rec {
   pname = "lxd-unwrapped";
-  version = "5.16";
+  version = "5.18";
 
   src = fetchurl {
     url = "https://github.com/canonical/lxd/releases/download/lxd-${version}/lxd-${version}.tar.gz";
-    hash = "sha256-evtNPZvnx8rzr/tJkEp0E7BhUBWHBSJdMtZJQk3VZI8=";
+    hash = "sha256-4F4q+jnypE4I2/5D65UT3NRpdJertSRni8JvHkpTFVI=";
   };
 
   vendorHash = null;

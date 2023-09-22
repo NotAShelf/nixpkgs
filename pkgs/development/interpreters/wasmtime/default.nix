@@ -2,19 +2,23 @@
 
 rustPlatform.buildRustPackage rec {
   pname = "wasmtime";
-  version = "12.0.0";
+  version = "13.0.0";
 
   src = fetchFromGitHub {
     owner = "bytecodealliance";
     repo = pname;
     rev = "v${version}";
-    hash = "sha256-6bbz8FH87MahD3R7G3cmsJD0461L4OoCbFejyXsuER0=";
+    hash = "sha256-D8Osn/vlPr9eg5F8O0K/eC/M0prHQM7U96k8Cx9D1/4=";
     fetchSubmodules = true;
   };
 
-  cargoHash = "sha256-QbKYnKdJK9zImZDl057l8/Za4A+N82WrqQCzrOsc6fE=";
+  cargoHash = "sha256-nFKk6T3S86lPxn/JCEid2Xd9c5zQPOMFcKTi6eM89uE=";
 
   cargoBuildFlags = [ "--package" "wasmtime-cli" "--package" "wasmtime-c-api" ];
+  cargoPatches = [
+    # this patch is necessary until cargo-auditable is bumped on the rust platform
+    ./patches/0001-Use-dep-dependency-due-to-cargo-auditable-limitation.patch
+  ];
 
   outputs = [ "out" "dev" ];
 
