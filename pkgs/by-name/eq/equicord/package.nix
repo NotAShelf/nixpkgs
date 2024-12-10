@@ -9,13 +9,13 @@
 }:
 stdenv.mkDerivation (finalAttrs: {
   pname = "equicord";
-  version = "1.10.4"; # from package.json
+  version = "1.10.8";
 
   src = fetchFromGitHub {
     owner = "Equicord";
     repo = "Equicord";
-    rev = "440b68ea82b6fd44bf5ec70b759a0207ee9f4ca7";
-    hash = "sha256-9GIw8g2HZ6/5Lb4gtDyuBqZWi5YK5Uz0lo+u+LrIZwI=";
+    tag = "v${finalAttrs.version}";
+    hash = "sha256-kbK9tnu0G/nLy4A06xvd2yvlc6UhQfKiC6I9qmJeIwc=";
   };
 
   pnpmDeps = pnpm_9.fetchDeps {
@@ -31,7 +31,7 @@ stdenv.mkDerivation (finalAttrs: {
 
   env = {
     EQUICORD_REMOTE = "${finalAttrs.src.owner}/${finalAttrs.src.repo}";
-    EQUICORD_HASH = "${finalAttrs.src.rev}";
+    EQUICORD_HASH = "${finalAttrs.src.tag}";
   };
 
   buildPhase = ''
