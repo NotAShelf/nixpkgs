@@ -1,5 +1,6 @@
 {
   lib,
+  python3,
   python3Packages,
   fetchFromGitHub,
   replaceVars,
@@ -68,6 +69,11 @@ python3Packages.buildPythonPackage rec {
       --replace-fail "/usr/local/share/auto-cpufreq/images/icon.png" $out/share/pixmaps/auto-cpufreq.png
     substituteInPlace auto_cpufreq/gui/app.py \
       --replace-fail "/usr/local/share/auto-cpufreq/scripts/style.css" $out/share/auto-cpufreq/scripts/style.css
+
+
+    patchShebangs auto_cpufreq/core.py auto_cpufreq/bin/auto_cpufreq.py auto_cpufreq/bin/auto_cpufreq_gtk.py \
+      auto_cpufreq/battery_scripts/thinkpad.py auto_cpufreq/battery_scripts/ideapad_laptop.py \
+      auto_cpufreq/battery_scripts/ideapad_acpi.py auto_cpufreq/battery_scripts/battery.py
   '';
 
   postInstall = ''
