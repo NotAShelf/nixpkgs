@@ -10,18 +10,21 @@
 }:
 stdenv.mkDerivation (finalAttrs: {
   pname = "equicord";
-  version = "1.11.4";
+  # Upstream discourages inferring package version from package.json and dates as tags
+  # were the compromise we came to. Please do not change the version unless upstream
+  # changes their tagging scheme.
+  version = "2025-04-17";
 
   src = fetchFromGitHub {
     owner = "Equicord";
     repo = "Equicord";
-    tag = "v${finalAttrs.version}";
-    hash = "sha256-BjAp+bubpG9tTo8y5LWcTCnpLbiyuY1Q6ZnprgeKoZg=";
+    tag = "2025-04-17";
+    hash = "sha256-pAuNqPrQBeL2qPIoIvyBl1PrUBz81TrBd5RT15Iuuus=";
   };
 
   pnpmDeps = pnpm_9.fetchDeps {
     inherit (finalAttrs) pname version src;
-    hash = "sha256-4uCo/pQ4f8k/7DNpCPDAeqfroZ9icFiTwapwS10uWkE=";
+    hash = "sha256-fjfzBy1Z7AUKA53yjjCQ6yasHc5QMaOBtXtXA5fNK5s=";
   };
 
   nativeBuildInputs = [
